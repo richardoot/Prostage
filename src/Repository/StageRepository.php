@@ -19,6 +19,29 @@ class StageRepository extends ServiceEntityRepository
         parent::__construct($registry, Stage::class);
     }
 
+/*
+    /**
+     * @return Stage[] Returns an array of Stage objects
+     */
+
+  /*  public function findStagesByEntreprise($id)
+    {
+      //Récupérer le gestionnaire d'entiter
+        $gestionnaireEntiter = $this->getEntityManager();
+
+      //Définir requête DQL
+        $requete = $gestionnaireEntiter->createQuery(
+            'SELECT s,e
+             FROM App\Entity\Stage s
+             JOIN s.entreprise e
+             ORDER BY s.titre ASC');
+
+      //Executer la requete
+        return $requete->execute();
+
+    }*/
+
+
     /**
      * @return Stage[] Returns an array of Stage objects
      */
@@ -31,6 +54,27 @@ class StageRepository extends ServiceEntityRepository
            ->getResult()
        ;
    }
+
+
+   /**
+    * @return Stage[] Returns an array of Stage objects
+    */
+
+    public function findAllByAlphabeticOrderDQL(){
+      //Récupérer le gestionnaire d'entiter
+        $gestionnaireEntiter = $this->getEntityManager();
+
+      //Définir la requette
+        $requete = $gestionnaireEntiter->createQuery(
+          'SELECT s
+           FROM App\Entity\Stage s
+           ORDER BY s.titre ASC'
+        );
+
+      //Exécuter et envoyer la requette
+        return $requete->execute();
+
+    }
 
     /*
     public function findOneBySomeField($value): ?Stage

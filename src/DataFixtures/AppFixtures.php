@@ -32,13 +32,15 @@ class AppFixtures extends Fixture
           $secteur[] = "Tech de CO";
           $secteur[] = "Communication";
           $secteur[] = "Bio";
+          $secteur[] = "Science de l'ingénieur";
+          $secteur[] = "Mécanique";
 
           for($k=0 ; $k < $nbFormations ; $k++){
             //Déclaration
               $formation = new Formation();
 
             //Initialisation
-              $formation->setNomCourt($diplome[$faker->numberBetween($min = 0, $max = 4)] . ' ' . $secteur[$faker->numberBetween($min = 0, $max = 4)]);
+              $formation->setNomCourt($diplome[$faker->numberBetween($min = 0, $max = 4)] . ' ' . $secteur[$faker->numberBetween($min = 0, $max = 6)]);
               $formation->setNomLong('La formation requise pour ce stage est la suivante: ' . $formation->getNomCourt());
 
             //Rentrer la formation dans un tableau
