@@ -92,15 +92,15 @@ class AppFixtures extends Fixture
                   $nbFormation = $faker->numberBetween($min = 0, $max = 1); //Variable = 1 si il y a une formation dans se stage
 
                 //Initialisation
-                  $stages->setTitre('Stage ' . $entreprise->getNom());
-                  $stages->setSousTitre($faker->jobTitle());
-                  $stages->setDescriptionCourte('Stage de ' . $stages->getSousTitre() . ' dans la fameuse compagnie ' . $entreprise->getNom());
+                  $stages->setTitre($faker->jobTitle());
+                  $stages->setSousTitre('Stage chez ' . $entreprise->getNom());
+                  $stages->setDescriptionCourte('Stage de ' . $stages->getTitre() . ' dans la fameuse compagnie ' . $entreprise->getNom());
 
                   if($nbFormation == 1){
-                    $stages->setDescriptionLongue('Stage de ' . $stages->getSousTitre() . ' à '. $entreprise->getVille() . ' (' . $entreprise->getPays() . '), dans la fameuse compagnie de ' . $entreprise->getActivite() . ', ' . $entreprise->getNom() . '. ' . $tabFormation[$numDeLaFormation]->getNomLong());
+                    $stages->setDescriptionLongue('Stage de ' . $stages->getTitre() . ' à '. $entreprise->getVille() . ' (' . $entreprise->getPays() . '), dans la fameuse compagnie de ' . $entreprise->getActivite() . ', ' . $entreprise->getNom() . '. ' . $tabFormation[$numDeLaFormation]->getNomLong());
                   }
                   else {
-                    $stages->setDescriptionLongue('Stage de ' . $stages->getSousTitre() . ' à '. $entreprise->getVille() . ' (' . $entreprise->getPays() . '), dans la fameuse compagnie de ' . $entreprise->getActivite() . ', ' . $entreprise->getNom() . '.');
+                    $stages->setDescriptionLongue('Stage de ' . $stages->getTitre() . ' à '. $entreprise->getVille() . ' (' . $entreprise->getPays() . '), dans la fameuse compagnie de ' . $entreprise->getActivite() . ', ' . $entreprise->getNom() . '.');
                   }
                   $stages->setEmail($faker->email());
 
