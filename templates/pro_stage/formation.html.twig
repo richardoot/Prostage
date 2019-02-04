@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Prostages - Formations {% endblock%}
+
+{% block body %}
+  <!-- Titre -->
+  <h1> Page des formations </h1>
+
+  {% set debutLigne = true %}
+
+    {% for formationCourante in formations %}
+
+      <div class="row">
+        <!--div class="col-md-3 col-sm-6 col-xs-12"-->
+        <div class="col-4 offset-4">
+          <div class="card mb-3">
+            <p style="text-align: center;"><a href="/formation-{{formationCourante.id}}" class="card-link"> {{formationCourante.nomCourt}} </a></p>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+
+{% endblock %}

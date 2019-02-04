@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Prostage - Entreprise {% endblock %}
+
+{% block body %}
+  <!-- Titre -->
+  <h1> Page de tous les stages </h1>
+
+
+  {% set debutLigne = true %}
+
+    {% for entrepriseCourante in entreprises %}
+
+        <div class="row">
+          <div class="col-4 offset-4">
+            <div class="card mb-3">
+              <p style="text-align: center;"><a href="/entreprise-{{entrepriseCourante.id}}"> {{entrepriseCourante.nom}} </a></p>
+            </div>
+          </div>
+        </div>
+
+
+    {% endfor %}
+
+
+
+{% endblock %}
