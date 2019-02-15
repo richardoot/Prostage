@@ -22,7 +22,7 @@ class ProStageController extends AbstractController
      * @Route("/entreprise/ajouter", name="ajoutEntreprise")
      */
     public function ajouterEntreprise(){
-        return $this->render('pro_stage/ici.html.twig');
+        return $this->render('pro_stage/ajouterEntreprise.html.twig');
     }
 
 
