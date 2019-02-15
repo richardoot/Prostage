@@ -18,6 +18,14 @@ class ProStageController extends AbstractController
     }
 
 
+    /**
+     * @Route("/entreprise/ajouter", name="ajoutEntreprise")
+     */
+    public function ajouterEntreprise(){
+        return $this->render('pro_stage/ici.html.twig');
+    }
+
+
 
     /**
      * @Route("/stages", name="stages")
@@ -67,11 +75,12 @@ class ProStageController extends AbstractController
        }
 
 
+//Ancien controleur pour afficher les stages d'une entreprise donnée
 
-       /**
-        * @Route("/entreprise-{id}", name="entreprise")
-        */
-        public function afficherStagesEntreprise($id){
+//       /**
+//        * @Route("/entreprise-{id}", name="entreprise")
+//        */
+/*        public function afficherStagesEntreprise($id){
           //Récupérer les répository
             $repositoryStage = $this->getDoctrine()->getRepository(Stage::class);
             $repositoryEntreprise = $this->getDoctrine()->getRepository(Entreprise::class);
@@ -82,14 +91,31 @@ class ProStageController extends AbstractController
 
           //Envoyer les données à la vue
             return $this->render('pro_stage\stagesParEntreprise.html.twig',['entreprise'=> $entreprise ,'stages' => $stages]);
-        }
+        }*/
+
+
+//Nouveau controleur pour afficher les stages d'une entreprise donnée
+
+        /**
+         * @Route("/entreprise-{nom}", name="entreprise")
+         */
+               public function afficherStagesEntreprise($nom){
+                 //Récupérer les répository
+                   $repositoryStage = $this->getDoctrine()->getRepository(Stage::class);
+
+                 //Récupérer les données de la BD
+                   $stages = $repositoryStage->findStagesByEntreprise($nom);
+
+                 //Envoyer les données à la vue
+                   return $this->render('pro_stage\stagesParEntreprise.html.twig',['nomEntreprise'=> $nom ,'stages' => $stages]);
+               }
 
 
 
-         /**
-          * @Route("/formation-{id}", name="formation")
-          */
-          public function afficherStagesFormation($id){
+//         /**
+//          * @Route("/formation-{id}", name="formation")
+//          */
+/*          public function afficherStagesFormation($id){
             //Récupérer le répository
               $repositoryFormation = $this->getDoctrine()->getRepository(Formation::class);
 
@@ -100,7 +126,24 @@ class ProStageController extends AbstractController
 
             //Envoyer les données à la vue
               return $this->render('pro_stage\stagesParFormation.html.twig',['formation'=> $formation ,'stages' => $stages]);
-          }
+          }*/
+
+
+
+          /**
+           * @Route("/formation-{nom}", name="formation")
+           */
+           public function afficherStagesFormation($nom){
+             //Récupérer le répository
+               $repositoryStage = $this->getDoctrine()->getRepository(Stage::class);
+
+             //Récupérer les données de la BD
+               $stages = $repositoryStage->findStagesByFormation($nom);
+
+             //Envoyer les données à la vue
+               return $this->render('pro_stage\stagesParFormation.html.twig',['nomFormation'=> $nom ,'stages' => $stages]);
+           }
+
 
 
           /**
