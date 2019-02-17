@@ -11,14 +11,15 @@
         <div class="card-body" style="background: black;">
            <h4>Veuillez saisir les données</h4>
            {{form_start(formulaire)}}
-              {{form_row(formulaire.nom)}}
-              {{form_row(formulaire.activite)}}
-              {{form_row(formulaire.numRue)}}
-              {{form_row(formulaire.rue)}}
-              {{form_row(formulaire.codePostale)}}
-              {{form_row(formulaire.ville)}}
-              {{form_row(formulaire.pays)}}
-              {{form_row(formulaire.complementAdresse)}}
+              {{form_row(formulaire.nom,{'attr': {'placeholder': 'Samsung'}})}}
+              {{form_row(formulaire.activite,{'attr': {'placeholder': 'Developpeur'}})}}
+              {{form_row(formulaire.numRue,{'attr': {'placeholder': '4'}})}}
+              {{form_row(formulaire.rue,{'attr': {'placeholder': 'Avenue François Mitterand'}})}}
+              {{form_row(formulaire.codePostale,{'attr': {'placeholder': '75100'}})}}
+              {{form_row(formulaire.ville,{'attr': {'placeholder': 'Paris'}})}}
+              {{form_row(formulaire.pays,{'attr': {'placeholder': 'France'}})}}
+              {{form_row(formulaire.complementAdresse,{'attr': {'placeholder': 'Résidence Ingurumena bât A2 6ème étage appartement n°263'}})}}
+              <button type="submit" class="btn btn-success" name="button">Enregistrer</button>
            {{form_end(formulaire)}}
         </div>
       </div>
