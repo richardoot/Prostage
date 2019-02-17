@@ -10,7 +10,16 @@
         <p style="text-align: center;"> Formulaire d'ajout d'entreprise </p>
         <div class="card-body" style="background: black;">
            <h4>Veuillez saisir les données</h4>
-           {{form(formulaire)}}
+           {{form_start(formulaire)}}
+              {{form_row(formulaire.nom)}}
+              {{form_row(formulaire.activite)}}
+              {{form_row(formulaire.numRue)}}
+              {{form_row(formulaire.rue)}}
+              {{form_row(formulaire.codePostale)}}
+              {{form_row(formulaire.ville)}}
+              {{form_row(formulaire.pays)}}
+              {{form_row(formulaire.complementAdresse)}}
+           {{form_end(formulaire)}}
         </div>
       </div>
     </div>
