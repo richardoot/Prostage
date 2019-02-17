@@ -47,7 +47,7 @@ class ProStageController extends AbstractController
 
 
     /**
-     * @Route("/stages", name="stages")
+     * @Route("/stages", name="lesStages")
      */
      public function afficherStages(){
       //Récupérer le répository de stage
@@ -63,7 +63,7 @@ class ProStageController extends AbstractController
 
 
      /**
-      * @Route("/entreprises", name="entreprises")
+      * @Route("/entreprises", name="lesEntreprises")
       */
       public function afficherEntreprises(){
         //Récupérer répository d'entreprises
@@ -80,7 +80,7 @@ class ProStageController extends AbstractController
 
 
       /**
-       * @Route("/formations", name="formations")
+       * @Route("/formations", name="lesFormations")
        */
        public function afficherFormations(){
          //Récupérer le répository de formation
