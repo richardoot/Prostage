@@ -4,9 +4,11 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Stage;
 use App\Entity\Entreprise;
 use App\Entity\Formation;
+use Doctrine\Common\Persistence\ObjectManager;
 
 class ProStageController extends AbstractController
 {
@@ -21,7 +23,7 @@ class ProStageController extends AbstractController
     /**
      * @Route("/entreprise/ajouter", name="ajoutEntreprise")
      */
-    public function ajouterEntreprise(){
+    public function ajouterEntreprise(Request $request, ObjectManager $manager){
       //Création d'une entreprise vide qui sera rempli par le Formulaire
         $entreprise = new Entreprise();
 
@@ -36,6 +38,22 @@ class ProStageController extends AbstractController
                                      ->add('pays')
                                      ->add('complementAdresse')
                                      ->getForm();
+
+      //Analyse la derniére requete html pour voir si le tableau post
+      // contient les variables qui ont été rentrées, si c'est le cas
+      // alors il hydrate l'objet entreprise
+        $formulaireEntreprise->handleRequest($request);
+
+        //dump($entreprise);
+      //Vérifier que le formulaire a été soumis
+        if($formulaireEntreprise->isSubmitted()){
+            //Envoyer les donnée en BD
+              $manager->persist($entreprise);
+              $manager->flush();
+
+            //Redirection
+              return $this->redirectToRoute('lesEntreprises');
+        }
 
       //Générer la représentation graphique du formulaire
         $vueFormulaire = $formulaireEntreprise->createView();
