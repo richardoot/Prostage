@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Prostage - Ajout Entreprise {% endblock %}
+{% block title %} Prostage - {% if action == "ajout" %} Ajout Entreprise {% else %} Modification Entreprise {% endif%} {% endblock %}
 
 {% block body %}
 
   <div class="row">
     <div class="col-10 offset-1">
       <div class="card mb-3">
-        <p style="text-align: center;"> Formulaire d'ajout d'entreprise </p>
+        <h3 style="text-align: center;"> {% if action == "ajout" %} Formulaire d'ajout d'entreprise {% else %} Formulaire de modification d'entreprise {% endif %} </h3>
         <div class="card-body" style="background: black;">
            <h4>Veuillez saisir les données</h4>
            {{form_start(formulaire)}}

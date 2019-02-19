@@ -59,7 +59,47 @@ class ProStageController extends AbstractController
         $vueFormulaire = $formulaireEntreprise->createView();
 
       //Envoyer la page à la vue
-        return $this->render('pro_stage/ajouterEntreprise.html.twig',["formulaire" => $vueFormulaire]);
+        return $this->render('pro_stage/ajoutModifEntreprise.html.twig',["formulaire" => $vueFormulaire,"action" => "ajout"]);
+    }
+
+
+    /**
+     * @Route("/entreprise-{id}/modifier", name="modifEntreprise")
+     */
+    public function modifierEntreprise(Request $request, ObjectManager $manager, Entreprise $entreprise){
+      //Création du Formulaire permettant de saisir une ressource
+        $formulaireEntreprise = $this->createFormBuilder($entreprise)
+                                     ->add('nom')
+                                     ->add('activite')
+                                     ->add('numRue')
+                                     ->add('rue')
+                                     ->add('codePostale')
+                                     ->add('ville')
+                                     ->add('pays')
+                                     ->add('complementAdresse')
+                                     ->getForm();
+
+      //Analyse la derniére requete html pour voir si le tableau post
+      // contient les variables qui ont été rentrées, si c'est le cas
+      // alors il hydrate l'objet entreprise
+        $formulaireEntreprise->handleRequest($request);
+
+        //dump($entreprise);
+      //Vérifier que le formulaire a été soumis
+        if($formulaireEntreprise->isSubmitted()){
+            //Envoyer les donnée en BD
+              $manager->persist($entreprise);
+              $manager->flush();
+
+            //Redirection
+              return $this->redirectToRoute('lesEntreprises');
+        }
+
+      //Générer la représentation graphique du formulaire
+        $vueFormulaire = $formulaireEntreprise->createView();
+
+      //Envoyer la page à la vue
+        return $this->render('pro_stage/ajoutModifEntreprise.html.twig',["formulaire" => $vueFormulaire,"action" => "modif"]);
     }
 
 

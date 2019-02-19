@@ -14,7 +14,7 @@
         <div class="row">
           <div class="col-4 offset-4">
             <div class="card mb-3">
-              <p style="text-align: center;"><a href="{{path('entreprise',{nom: entrepriseCourante.nom})}}"> {{entrepriseCourante.nom}} </a></p>
+              <p style="text-align: center;"><a href="{{path('entreprise',{nom: entrepriseCourante.nom})}}"> {{entrepriseCourante.nom}} </a> -- <a href="{{path('modifEntreprise',{id: entrepriseCourante.id})}}" style="color: red;"> Modifier entreprise</a> </p>
             </div>
           </div>
         </div>
