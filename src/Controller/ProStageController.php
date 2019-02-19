@@ -9,6 +9,7 @@ use App\Entity\Stage;
 use App\Entity\Entreprise;
 use App\Entity\Formation;
 use Doctrine\Common\Persistence\ObjectManager;
+use App\Form\EntrepriseType;
 
 class ProStageController extends AbstractController
 {
@@ -24,20 +25,8 @@ class ProStageController extends AbstractController
      * @Route("/entreprise/ajouter", name="ajoutEntreprise")
      */
     public function ajouterEntreprise(Request $request, ObjectManager $manager){
-      //Création d'une entreprise vide qui sera rempli par le Formulaire
-        $entreprise = new Entreprise();
-
       //Création du Formulaire permettant de saisir une ressource
-        $formulaireEntreprise = $this->createFormBuilder($entreprise)
-                                     ->add('nom')
-                                     ->add('activite')
-                                     ->add('numRue')
-                                     ->add('rue')
-                                     ->add('codePostale')
-                                     ->add('ville')
-                                     ->add('pays')
-                                     ->add('complementAdresse')
-                                     ->getForm();
+      $formulaireEntreprise = $this->createForm(EntrepriseType::class, $entreprise);
 
       //Analyse la derniére requete html pour voir si le tableau post
       // contient les variables qui ont été rentrées, si c'est le cas
@@ -67,17 +56,8 @@ class ProStageController extends AbstractController
      * @Route("/entreprise-{id}/modifier", name="modifEntreprise")
      */
     public function modifierEntreprise(Request $request, ObjectManager $manager, Entreprise $entreprise){
-      //Création du Formulaire permettant de saisir une ressource
-        $formulaireEntreprise = $this->createFormBuilder($entreprise)
-                                     ->add('nom')
-                                     ->add('activite')
-                                     ->add('numRue')
-                                     ->add('rue')
-                                     ->add('codePostale')
-                                     ->add('ville')
-                                     ->add('pays')
-                                     ->add('complementAdresse')
-                                     ->getForm();
+      //Création du Formulaire permettant de modifier une ressource
+        $formulaireEntreprise = $this->createForm(EntrepriseType::class, $entreprise);
 
       //Analyse la derniére requete html pour voir si le tableau post
       // contient les variables qui ont été rentrées, si c'est le cas
