@@ -10,6 +10,7 @@ use App\Entity\Entreprise;
 use App\Entity\Formation;
 use Doctrine\Common\Persistence\ObjectManager;
 use App\Form\EntrepriseType;
+use App\Form\StageType;
 
 class ProStageController extends AbstractController
 {
@@ -25,8 +26,12 @@ class ProStageController extends AbstractController
      * @Route("/entreprise/ajouter", name="ajoutEntreprise")
      */
     public function ajouterEntreprise(Request $request, ObjectManager $manager){
+      //Création d'une entreprise vide qui sera rempli par le Formulaire
+        $entreprise = new Entreprise();
+
       //Création du Formulaire permettant de saisir une ressource
       $formulaireEntreprise = $this->createForm(EntrepriseType::class, $entreprise);
+
 
       //Analyse la derniére requete html pour voir si le tableau post
       // contient les variables qui ont été rentrées, si c'est le cas
@@ -80,6 +85,37 @@ class ProStageController extends AbstractController
 
       //Envoyer la page à la vue
         return $this->render('pro_stage/ajoutModifEntreprise.html.twig',["formulaire" => $vueFormulaire,"action" => "modif"]);
+    }
+
+
+    /**
+     * @Route("/stage/ajouter", name="ajoutStage")
+     */
+    public function ajouterStage(Request $request, ObjectManager $manager){
+      //Création d'un stage vide qui doit être hydraté
+          $stage = new Stage();
+
+      //Création du formulaire ajout de stage
+          $formulaireStage = $this->createForm(StageType::class,$stage);
+
+      //Récupérer les données
+          $formulaireStage->handleRequest($request);
+
+      //Vérifier que les données ont été soumis
+          if($formulaireStage->isSubmitted()){
+            //Envoyer les données en BD
+                $manager->persist($stage);
+                $manager->flush();
+
+            //Rediriger vers la page des stages
+                return $this->redirectToRoute('lesStages');
+          }
+
+      //Générer la représentation graphique du formulaire
+          $vueFormulaire = $formulaireStage->createView();
+
+      //Envoyer la représentation graphique du formulaire à la vu
+          return $this->render('pro_stage/ajoutStage.html.twig',['formulaire' => $vueFormulaire]);
     }
 
 

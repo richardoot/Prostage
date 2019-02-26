@@ -85,6 +85,7 @@ class AppFixtures extends Fixture
               $entreprise->setVille($faker->city());
               $entreprise->setPays($faker->country());
               $entreprise->setComplementAdresse($faker->randomDigitNotNull());
+              $entreprise->setUrl($faker->url());
 
             //Initialisation de 2 Stages
               for($j=0 ; $j < $nbStages ; $j++){
@@ -96,7 +97,7 @@ class AppFixtures extends Fixture
                 //Initialisation
                   $stages->setTitre($faker->jobTitle());
                   $stages->setSousTitre('Stage chez ' . $entreprise->getNom());
-                  $stages->setDescriptionCourte('Stage de ' . $stages->getTitre() . ' dans la fameuse compagnie ' . $entreprise->getNom());
+                  $stages->setDescriptionCourte('Stage de ' . $stages->getTitre() . ' dans la compagnie ' . $entreprise->getNom());
 
                   if($nbFormation == 1){
                     $stages->setDescriptionLongue('Stage de ' . $stages->getTitre() . ' à '. $entreprise->getVille() . ' (' . $entreprise->getPays() . '), dans la fameuse compagnie de ' . $entreprise->getActivite() . ', ' . $entreprise->getNom() . '. ' . $tabFormation[$numDeLaFormation]->getNomLong());

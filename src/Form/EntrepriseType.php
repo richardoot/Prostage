@@ -20,6 +20,7 @@ class EntrepriseType extends AbstractType
             ->add('ville')
             ->add('pays')
             ->add('complementAdresse')
+            ->add('url')
         ;
     }
 
