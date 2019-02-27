@@ -4,11 +4,12 @@
 
 {% block body %}
 
-  <div class="row">
-    <div class="col-10 offset-1">
-      <div class="card mb-3">
-        <h3 style="text-align: center;"> Formulaire d'ajout de Stage </h3>
-        <div class="card-body" style="background: black;">
+
+  <div class="card mb-3">
+    <h3 style="text-align: center;"> Formulaire d'ajout de Stage </h3>
+    <div class="card-body" style="background: black;">
+      <div class="row">
+        <div class="col-10 offset-1">
            <h4>Veuillez saisir les données</h4>
            {{form_start(formulaire)}}
               {{form_row(formulaire.titre,{'attr': {'placeholder': 'Développeur'}})}}
@@ -16,7 +17,18 @@
               {{form_row(formulaire.descriptionCourte,{'attr': {'placeholder': 'Stage de Développeur dans mon entreprise'}})}}
               {{form_row(formulaire.descriptionLongue,{'attr': {'placeholder': 'Ajouter votre description'}})}}
               {{form_row(formulaire.email,{'attr': {'placeholder': 'entreprise@domaine.com'}})}}
+        </div> <!-- Fin col1-->
+      </div> <!-- Fin ROW -->
+      <div class="row">
+        <div class="col-5 offset-1">
               {{form_row(formulaire.formations,{'label': 'Formations attendues:'})}}
+        </div> <!-- Fin col -->
+        <div class="col-5">
+              {{form_row(formulaire.entreprise,{label: 'Quelle est l\'entreprise dans laquelle auras lieu le stage'})}}
+        </div> <!-- Fin col -->
+      </div> <!-- Fin ROW -->
+      <div class="row">
+        <div class="col-10 offset-1">
               <button type="submit" class="btn btn-success"> Valider </button>
            {{form_end(formulaire)}}
         </div>

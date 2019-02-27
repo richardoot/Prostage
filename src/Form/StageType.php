@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Stage;
+use App\Entity\Entreprise;
+use App\Form\EntrepriseType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -24,10 +26,11 @@ class StageType extends AbstractType
                                                   'choice_label' => 'nomCourt',
                                                   'multiple' => true,
                                                   'expanded' => true])
-            ->add('entreprise', CollectionType::class,['entry_type' => EntrepriseType::class,
-                                                       'entry_options' => ['label' => false],
-                                                       'allow_add' => true,
-                                                       'allow_delete' => true])
+            //->add('entreprise', EntrepriseType::class)
+            ->add('entreprise',EntityType::class,['class' => Entreprise::class,
+                                                  'choice_label' => 'nom',
+                                                  'multiple' => false,
+                                                  'expanded' => true])
         ;
     }
 
