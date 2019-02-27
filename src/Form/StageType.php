@@ -22,7 +22,7 @@ class StageType extends AbstractType
             ->add('descriptionCourte')
             ->add('descriptionLongue')
             ->add('email')
-            ->add('formations',EntityType::class,['class' => Formation::class,
+            /*->add('formations',EntityType::class,['class' => Formation::class,
                                                   'choice_label' => 'nomCourt',
                                                   'multiple' => true,
                                                   'expanded' => true])
@@ -30,7 +30,7 @@ class StageType extends AbstractType
             ->add('entreprise',EntityType::class,['class' => Entreprise::class,
                                                   'choice_label' => 'nom',
                                                   'multiple' => false,
-                                                  'expanded' => true])
+                                                  'expanded' => true])*/
         ;
     }
 
