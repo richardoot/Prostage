@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -20,6 +21,13 @@ class Stage
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *    min = 5,
+     *    max = 255,
+     *    minMessage = "Votre titre est trop court, il doit faire plus de {{ limit }} caractères",
+     *    maxMessage = "Votre titre est trop long, il doit faire moins de {{ limit }} caractères"
+     *)
      */
     private $titre;
 
@@ -30,16 +38,28 @@ class Stage
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *    min = 20,
+     *    minMessage = "Votre descriptif court est trop court, il doit faire au moins {{ limit }} caractères"
+     *)
      */
     private $descriptionCourte;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *    min = 20,
+     *    minMessage = "Votre descriptif long est trop court, il doit faire au moins {{ limit }} caractères"
+     *)
      */
     private $descriptionLongue;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @Assert\Email
      */
     private $email;
 

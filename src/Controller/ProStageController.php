@@ -102,7 +102,7 @@ class ProStageController extends AbstractController
           $formulaireStage->handleRequest($request);
 
       //Vérifier que les données ont été soumis
-          if($formulaireStage->isSubmitted()){
+          if($formulaireStage->isSubmitted() && $formulaireStage->isValid()){
             //Envoyer les données en BD
                 $manager->persist($stage);
                 $manager->flush();
