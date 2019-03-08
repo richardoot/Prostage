@@ -137,7 +137,7 @@ class ProStageController extends AbstractController
 
 
      /**
-      * @Route("/admin/entreprises", name="lesEntreprises")
+      * @Route("/entreprises", name="lesEntreprises")
       */
       public function afficherEntreprises(){
         //Récupérer répository d'entreprises

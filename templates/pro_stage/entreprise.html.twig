@@ -15,7 +15,9 @@
           <div class="col-4 offset-4">
             <div class="card mb-3">
               <a style="text-align: center;" href="{{path('entreprise',{nom: entrepriseCourante.nom})}}"> {{entrepriseCourante.nom}} </a>
-              <a href="{{path('modifEntreprise',{id: entrepriseCourante.id})}}" style="color: red; font-size: 9px; text-align: right;"> Modifier entreprise </a>
+              {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{path('modifEntreprise',{id: entrepriseCourante.id})}}" style="color: red; font-size: 9px; text-align: right;"> Modifier entreprise </a>
+              {% endif %}
             </div>
           </div>
         </div>
