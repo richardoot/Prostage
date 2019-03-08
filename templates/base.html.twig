@@ -20,6 +20,8 @@
               </button>
 
               <div class="collapse navbar-collapse" id="navbarColor03">
+
+                <!-- Partie gauche du menu -->
                 <ul class="navbar-nav mr-auto">
                   <li class="nav-item active">
                     <a class="nav-link" href="{{path('accueil')}}">Accueil <span class="sr-only">(current)</span></a>
@@ -33,12 +35,32 @@
                   <li class="nav-item">
                     <a class="nav-link" href="{{path('lesFormations')}}">Formations</a>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="{{path('ajoutStage')}}"> + ajouter un stage</a>
+                </ul>
+
+                <!-- Partie droite du menu -->
+                <ul class="navbar-nav ml-auto">
+                  <li class="nav-item active">
+                    <a class="nav-link" href="{{path('ajoutStage')}}"> + Ajouter un stage</a>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="{{path('ajoutEntreprise')}}"> + ajouter une entreprise</a>
+                  <li class="nav-item active">
+                    <a class="nav-link" href="{{path('ajoutEntreprise')}}"> + Ajouter une entreprise</a>
                   </li>
+
+                  <!-- Connexion/Deconnexion -->
+                  {% if is_granted('ROLE_USER') %} <!--Actuellement connecter -->
+                    <li class="nav-item dropdown active">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{app.user.prenom}} {{app.user.nom}}
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="nav-link" href="{{path('app_logout')}}"> Deconnexion</a>
+                      </div>
+                    </li>
+                  {% else %} <!-- Actuellement deconnecter -->
+                    <li class="nav-item active">
+                      <a class="nav-link" href="{{path('app_login')}}"> Connexion</a>
+                    </li>
+                  {% endif %}
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
                   <!--input class="form-control mr-sm-2" type="text" placeholder="Search">
