@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Prostage - Inscription{% endblock %}
+
+{% block body %}
+
+
+  <div class="card mb-3" style="background: black;">
+    <h3 style="text-align: center;"> Inscrivez-vous: </h3>
+    <div class="card-body" style="background: black;">
+      <div class="row">
+        <div class="col-10 offset-1">
+           <h4>Veuillez saisir les données</h4>
+           {{form_start(formulaire, {'attr': {'novalidate': 'novalidate'}})}}
+        </div>
+        <div class="col-5 offset-1">
+              {{form_row(formulaire.prenom,{'attr': {'placeholder': 'Prénom'}})}}
+        </div>
+        <div class="col-5">
+              {{form_row(formulaire.nom,{'attr': {'placeholder': 'Nom'}})}}
+        </div>
+        <div class="col-10 offset-1">
+              {{form_row(formulaire.email,{'attr': {'placeholder': 'Email'}})}}
+              {{form_row(formulaire.password.first,{'attr': {'placeholder': 'Mot de Passe'}})}}
+              {{form_row(formulaire.password.second,{'attr': {'placeholder': 'Confirmer Mot de Passe'}})}}
+              <button class="btn btn-primary btn-block" type="submit"> s'inscrire </button>
+           {{form_end(formulaire)}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

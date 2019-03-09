@@ -48,7 +48,7 @@
                     <li class="nav-item active">
                       <a class="nav-link" href="{{path('ajoutEntreprise')}}"> + Ajouter une entreprise</a>
                     </li>
-                    
+
                     <li class="nav-item dropdown active">
                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{app.user.prenom}} {{app.user.nom}}
@@ -58,6 +58,10 @@
                       </div>
                     </li>
                   {% else %} <!-- Actuellement deconnecter -->
+                    <li class="nav-item active">
+                      <a class="nav-link" href="{{path('app_inscription')}}"> Inscription</a>
+                    </li>
+
                     <li class="nav-item active">
                       <a class="nav-link" href="{{path('app_login')}}"> Connexion</a>
                     </li>
